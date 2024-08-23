@@ -1,0 +1,28 @@
+{
+  "name": "actions-proposal",
+  "version": "1.0.0",
+  "description": "This library is designed to manage user actions on entities based on context, leveraging the power of TypeScript generics.",
+  "main": "src/index.ts",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbiondo/actions-proposal.git"
+  },
+  "keywords": [
+    "typescript",
+    "actions",
+    "permissions",
+    "policies"
+  ],
+  "author": "Maximiliano Biondo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mbiondo/actions-proposal/issues"
+  },
+  "homepage": "https://github.com/mbiondo/actions-proposal#readme"
+}
