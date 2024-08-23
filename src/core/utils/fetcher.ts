@@ -49,15 +49,16 @@ class Fetcher {
           forceArray.forEach((value) => {
             if (typeof value === 'object') {
               Object.keys(value).forEach((key) => {
-                query.append(`${p.name}[${key}]`, value[key])
+                query.append(`${p.name}[${key}]`, value[key] as string)
               })
             } else {
-              query.append(p.name, value)
+              query.append(p.name, value as string)
             }
           })
         } else if (typeof params[p.name] === 'object') {
           Object.keys(params[p.name]).forEach((key) => {
-            query.append(`${p.name}[${key}]`, params[p.name][key])
+            const fObject = params[p.name] as Record<string, unknown>
+            query.append(`${p.name}[${key}]`, fObject[key] as string)
           })
         } else {
           query.append(p.name, params[p.name] as string)
@@ -87,8 +88,8 @@ class Fetcher {
       })
 
       if (endpoint.mapperKey) {
-        if (!data[endpoint.mapperKey]) throw new Error('Mapper key not found')
-        data = data[endpoint.mapperKey]
+        if (!data[endpoint.mapperKey as keyof T]) throw new Error('Mapper key not found')
+        data = data[endpoint.mapperKey as keyof T] as T
       }
       if (endpoint.mapper) data = endpoint.mapper.map(data) as T
       return data
