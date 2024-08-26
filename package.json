@@ -2,12 +2,14 @@
   "name": "actions-proposal",
   "version": "1.0.0",
   "description": "This library is designed to manage user actions on entities based on context, leveraging the power of TypeScript generics.",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -27,7 +29,9 @@
   "homepage": "https://github.com/mbiondo/actions-proposal#readme",
   "devDependencies": {
     "@types/jest": "^29.5.12",
+    "@types/node": "^22.5.0",
     "jest": "^29.7.0",
-    "ts-jest": "^29.2.5"
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.5.4"
   }
 }
