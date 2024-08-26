@@ -1,5 +1,5 @@
 {
-  "name": "actions-proposal",
+  "name": "actions-manager",
   "version": "1.0.0",
   "description": "This library is designed to manage user actions on entities based on context, leveraging the power of TypeScript generics.",
   "main": "dist/index.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mbiondo/actions-proposal.git"
+    "url": "git+https://github.com/mbiondo/actions-manager.git"
   },
   "keywords": [
     "typescript",
@@ -24,9 +24,9 @@
   "author": "Maximiliano Biondo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mbiondo/actions-proposal/issues"
+    "url": "https://github.com/mbiondo/actions-manager/issues"
   },
-  "homepage": "https://github.com/mbiondo/actions-proposal#readme",
+  "homepage": "https://github.com/mbiondo/actions-manager#readme",
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "@types/node": "^22.5.0",
