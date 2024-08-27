@@ -1,5 +1,5 @@
-import type { Endpoint, IEndpointInput, IEndpointResponse, IError } from '@core/interfaces'
-import { IHttpClient } from '@core/interfaces/http'
+import type { Endpoint, IEndpointInput, IEndpointResponse, IError } from '../interfaces'
+import { IHttpClient } from '../interfaces/http'
 
 import DefaultHTTPClient from './httpClient'
 

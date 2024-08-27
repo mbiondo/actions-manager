@@ -1,5 +1,5 @@
-import { IAction, IActionManager, IActionParam } from '@core/interfaces/actions'
-import { IContext } from '@core/interfaces/context'
+import { IAction, IActionManager, IActionParam } from '../interfaces/actions'
+import { IContext } from '../interfaces/context'
 
 class ActionManager<T extends IContext, V extends IActionParam> implements IActionManager<T, V> {
   private actions: IAction<T, V>[] = []

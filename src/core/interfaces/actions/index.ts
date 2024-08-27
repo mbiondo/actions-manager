@@ -1,5 +1,5 @@
-import { IContext } from '@core/interfaces/context'
-import { IPolicy } from '@core/interfaces/policies'
+import { IContext } from '../context'
+import { IPolicy } from '../policies'
 
 type IActionParam = Record<string, unknown>
 

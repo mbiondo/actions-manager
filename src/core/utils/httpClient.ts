@@ -1,4 +1,4 @@
-import { HTTPClientResponse, IError } from '@core/interfaces'
+import { HTTPClientResponse, IError } from '../interfaces'
 
 const DefaultHTTPClient = async <T>(options: Record<string, unknown>): Promise<HTTPClientResponse<T>> => {
   try {

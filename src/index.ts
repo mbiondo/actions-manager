@@ -11,10 +11,10 @@ import type {
   IEndpointResponse,
   HTTPClientResponse,
   IError,
-} from '@core/interfaces'
+} from './core/interfaces'
 
-import Fetcher from '@core/utils/fetcher'
-import ActionManager from '@core/utils/manager'
+import Fetcher from './core/utils/fetcher'
+import ActionManager from './core/utils/manager'
 
 export { Fetcher, ActionManager }
 

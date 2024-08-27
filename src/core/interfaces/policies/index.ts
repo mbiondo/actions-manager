@@ -1,4 +1,4 @@
-import { IContext } from '@core/interfaces/context/index'
+import { IContext } from '../context'
 
 interface IPolicy<T extends IContext> {
   test: (context: T) => boolean
