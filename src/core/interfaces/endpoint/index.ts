@@ -17,8 +17,8 @@ interface Endpoint {
   name: string
   method: string
   path: string
-  description: string
-  tags: string[]
+  description?: string
+  tags?: string[]
   parameters: IParameter[]
   permissions?: string | string[]
   mapperKey?: string
@@ -28,7 +28,7 @@ interface Endpoint {
 interface IParameter {
   name: string
   type: string
-  description: string
+  description?: string
   scope: 'query' | 'body' | 'path'
   required: boolean
   default?: string

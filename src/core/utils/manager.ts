@@ -1,7 +1,9 @@
 import { IAction, IActionManager, IActionParam } from '../interfaces/actions'
 import { IContext } from '../interfaces/context'
 
-class ActionManager<T extends IContext, V extends IActionParam> implements IActionManager<T, V> {
+class ActionManager<T extends IContext = IContext, V extends IActionParam = IActionParam>
+  implements IActionManager<T, V>
+{
   private actions: IAction<T, V>[] = []
   private context: T
 

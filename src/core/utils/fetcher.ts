@@ -26,7 +26,7 @@ class Fetcher {
     return this.httpClient
   }
 
-  public async fetch<T extends IEndpointResponse, V extends IEndpointInput>(
+  public async fetch<T extends IEndpointResponse = IEndpointResponse, V extends IEndpointInput = IEndpointInput>(
     endpoint: Endpoint,
     params: V,
     headers?: Record<string, string>,

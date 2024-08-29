@@ -5,9 +5,9 @@ type IActionParam = Record<string, unknown>
 
 interface IAction<T extends IContext, V extends IActionParam> {
   id: unknown
-  name: string
+  name?: string
   policies: IPolicy<T> | IPolicy<T>[] | IPolicy<T>[][] | null
-  exec?: (params: V) => Promise<unknown>
+  exec: (params: V) => Promise<unknown>
 }
 
 interface IActionBuilder<T extends IContext, V extends IActionParam> {
