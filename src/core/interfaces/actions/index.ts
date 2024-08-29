@@ -3,7 +3,7 @@ import { IPolicy } from '../policies'
 
 type IActionParam = Record<string, unknown>
 
-interface IAction<T extends IContext, V extends IActionParam> {
+interface IAction<T extends IContext = IContext, V extends IActionParam = IActionParam> {
   id: unknown
   name?: string
   policies: IPolicy<T> | IPolicy<T>[] | IPolicy<T>[][] | null
@@ -14,7 +14,7 @@ interface IActionBuilder<T extends IContext, V extends IActionParam> {
   build: (actions: IAction<T, V>[], context: T) => IAction<T, V>[]
 }
 
-interface IActionManager<T extends IContext, V extends IActionParam> {
+interface IActionManager<T extends IContext = IContext, V extends IActionParam = IActionParam> {
   addAction(action: IAction<T, V>): void
   setActions(actions: IAction<T, V>[]): void
   getActions(): IAction<T, V>[]
