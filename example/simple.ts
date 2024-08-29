@@ -1,17 +1,17 @@
-import { ActionManager, type IAction, type IPolicy } from '../src'
+import { ActionManager, type IPolicy } from '../src'
 
-const testPolicy: IPolicy<any> = {
+const testPolicy: IPolicy = {
   test: (ctx: any): boolean => {
     return true
   },
 }
-const canPlayPolicy: IPolicy<any> = {
+const canPlayPolicy: IPolicy = {
   test: (ctx: any): boolean => {
     return ctx.songPlayer === true
   },
 }
 
-const actionManager = new ActionManager<any, any>({
+const actionManager = new ActionManager({
   songPlayer: true,
 })
 
