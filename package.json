@@ -1,6 +1,6 @@
 {
   "name": "@mbiondo/actions-manager",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This library is designed to manage user actions on entities based on context, leveraging the power of TypeScript generics.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
