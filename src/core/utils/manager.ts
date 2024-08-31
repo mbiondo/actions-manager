@@ -11,6 +11,14 @@ class ActionManager<T extends IContext = IContext, V extends IActionParam = IAct
     this.context = context
   }
 
+  setContext(context: T): void {
+    this.context = context
+  }
+
+  getContext(): T {
+    return this.context
+  }
+
   public setActions(actions: IAction<T, V>[]): void {
     this.actions = actions
   }
