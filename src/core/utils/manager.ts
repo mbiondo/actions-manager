@@ -11,11 +11,11 @@ class ActionManager<T extends IContext = IContext, V extends IActionParam = IAct
     this.context = context
   }
 
-  setContext(context: T): void {
+  public setContext(context: T): void {
     this.context = context
   }
 
-  getContext(): T {
+  public getContext(): T {
     return this.context
   }
 
