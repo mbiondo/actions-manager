@@ -15,6 +15,8 @@ interface IActionBuilder<T extends IContext, V extends IActionParam> {
 }
 
 interface IActionManager<T extends IContext = IContext, V extends IActionParam = IActionParam> {
+  setContext(context: T): void
+  getContext(): T
   addAction(action: IAction<T, V>): void
   setActions(actions: IAction<T, V>[]): void
   getActions(): IAction<T, V>[]
