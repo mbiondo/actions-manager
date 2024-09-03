@@ -22,7 +22,7 @@
     "policies"
   ],
   "author": "Maximiliano Biondo",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mbiondo/actions-manager/issues"
   },
