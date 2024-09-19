@@ -31,7 +31,7 @@ class ActionManager<T extends IContext = IContext, V extends IActionParam = IAct
     return this.actions.filter((action) => this.testAction(action))
   }
 
-  public canExecute(actionID: string): boolean {
+  public async canExecute(actionID: string): Promise<boolean> {
     const action = this.actions.find((action) => action.id === actionID)
     if (!action) return false
     return this.testAction(action)
@@ -40,19 +40,40 @@ class ActionManager<T extends IContext = IContext, V extends IActionParam = IAct
   public async execute<R>(actionID: string, params: V): Promise<R> {
     const action = this.actions.find((action) => action.id === actionID)
     if (!action) throw new Error(`Action ${actionID} not found`)
-    if (!this.testAction(action)) throw new Error(`Action ${actionID} not allowed`)
+    const allowed = await this.testAction(action)
+    if (!allowed) throw new Error(`Action ${actionID} not allowed`)
     if (!action.exec) throw new Error(`Action ${actionID} has no exec method`)
     return action.exec(params) as R
   }
 
-  private testAction(action: IAction<T, V>): boolean {
+  private async testAction(action: IAction<T, V>): Promise<boolean> {
     if (action.policies === null) return true
-    if (Array.isArray(action.policies))
-      return action.policies.every((policy) => {
-        if (Array.isArray(policy)) return policy.some((p) => p.test(this.context))
-        return policy.test(this.context)
-      })
-    return action.policies.test(this.context)
+
+    if (Array.isArray(action.policies)) {
+      const policyResults = await Promise.allSettled(
+        action.policies.map(async (policy) => {
+          if (Array.isArray(policy)) {
+            const nestedResults = await Promise.allSettled(policy.map((p) => p.test(this.context)))
+            return nestedResults.some((result) => result.status === 'fulfilled' && result.value === true)
+          } else {
+            try {
+              return await policy.test(this.context)
+            } catch (error) {
+              console.error(`Error en policy test:`, error)
+              return false
+            }
+          }
+        }),
+      )
+      return policyResults.every((result) => result.status === 'fulfilled' && result.value === true)
+    }
+
+    try {
+      return await action.policies.test(this.context)
+    } catch (error) {
+      console.error(`Error en policy test:`, error)
+      return false
+    }
   }
 }
 

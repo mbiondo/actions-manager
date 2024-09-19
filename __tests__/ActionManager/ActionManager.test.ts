@@ -17,7 +17,7 @@ const mockAction: IAction<TestContext, TestParams> = {
   name: 'Test Action',
   policies: [
     {
-      test: (context: TestContext) => context.userRole === 'admin',
+      test: async (context: TestContext): Promise<boolean> => context.userRole === 'admin',
     },
   ],
   exec: async (params: TestParams) => `Executed with ${params.someValue}`,
@@ -48,7 +48,7 @@ describe('ActionManager', () => {
       ...mockAction,
       policies: [
         {
-          test: (context: TestContext) => context.userRole !== 'admin',
+          test: async (context: TestContext): Promise<boolean> => context.userRole !== 'admin',
         },
       ],
     }
@@ -58,14 +58,14 @@ describe('ActionManager', () => {
     )
   })
 
-  test('should return false for canExecute when action is not found', () => {
-    const canExecute = actionManager.canExecute('non-existent-action')
+  test('should return false for canExecute when action is not found', async () => {
+    const canExecute = await actionManager.canExecute('non-existent-action')
     expect(canExecute).toBe(false)
   })
 
-  test('should return true for canExecute when action is allowed', () => {
+  test('should return true for canExecute when action is allowed', async () => {
     actionManager.addAction(mockAction)
-    const canExecute = actionManager.canExecute('test-action')
+    const canExecute = await actionManager.canExecute('test-action')
     expect(canExecute).toBe(true)
   })
 })

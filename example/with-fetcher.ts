@@ -58,7 +58,7 @@ interface ArticleActionParams extends IActionParam {
 }
 
 const isOwnerPolicy: IPolicy<SimpleContext> = {
-  test(context: SimpleContext): boolean {
+  async test(context: SimpleContext): Promise<boolean> {
     return context.user.id === context.article.authorId
   },
 }
@@ -86,10 +86,10 @@ const appContext: SimpleContext = {
   },
 }
 
-const ArticleActionManager = new ActionManager<SimpleContext, ArticleActionParams>(appContext) // ActionManager<SimpleContext, ArticleActionParams>
+const ArticleActionManager = new ActionManager<SimpleContext, ArticleActionParams>(appContext)
 
 ArticleActionManager.addAction(deleteArticleAction)
 
-const canDeleteArticle = ArticleActionManager.canExecute('delete-article') // true
+const canDeleteArticle = await ArticleActionManager.canExecute('delete-article')
 
 if (canDeleteArticle) console.log(await ArticleActionManager.execute('delete-article', { id: '456' }))

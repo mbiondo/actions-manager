@@ -20,7 +20,7 @@ interface IActionManager<T extends IContext = IContext, V extends IActionParam =
   addAction(action: IAction<T, V>): void
   setActions(actions: IAction<T, V>[]): void
   getActions(): IAction<T, V>[]
-  canExecute(actionID: string): boolean
+  canExecute(actionID: string): Promise<boolean>
   execute<R>(actionID: string, params: V): Promise<R>
 }
 

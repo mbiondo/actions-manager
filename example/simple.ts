@@ -1,12 +1,12 @@
 import { ActionManager, type IPolicy } from '../src'
 
 const testPolicy: IPolicy = {
-  test: (ctx: any): boolean => {
+  test: async (ctx: any): Promise<boolean> => {
     return true
   },
 }
 const canPlayPolicy: IPolicy = {
-  test: (ctx: any): boolean => {
+  test: async (ctx: any): Promise<boolean> => {
     return ctx.songPlayer === true
   },
 }
@@ -33,6 +33,7 @@ actionManager.addAction({
   },
 })
 
-if (actionManager.canExecute('test')) console.log(await actionManager.execute('test', {}))
-if (actionManager.canExecute('play'))
-  console.log(await actionManager.execute('play', { song: 'Never Gonna Give You Up' }))
+const canExecuteTest = await actionManager.canExecute('test')
+const canExecutePlay = await actionManager.canExecute('play')
+if (canExecuteTest) console.log(await actionManager.execute('test', {}))
+if (canExecutePlay) console.log(await actionManager.execute('play', { song: 'Never Gonna Give You Up' }))

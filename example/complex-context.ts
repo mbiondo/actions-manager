@@ -21,19 +21,19 @@ interface ArticleActionParams extends IActionParam {
 }
 
 const isAdminPolicy: IPolicy<SimpleContext> = {
-  test(context: SimpleContext): boolean {
+  async test(context: SimpleContext): Promise<boolean> {
     return context.user.roles.includes('admin')
   },
 }
 
 const isEditorPolicy: IPolicy<SimpleContext> = {
-  test(context: SimpleContext): boolean {
+  async test(context: SimpleContext): Promise<boolean> {
     return context.user.roles.includes('editor')
   },
 }
 
 const isOwnerPolicy: IPolicy<SimpleContext> = {
-  test(context: SimpleContext): boolean {
+  async test(context: SimpleContext): Promise<boolean> {
     return context.user.id === context.article.authorId
   },
 }
@@ -85,9 +85,9 @@ const ArticleActionManager = new ActionManager<SimpleContext, ArticleActionParam
 
 ArticleActionManager.setActions(actions)
 
-const canEditArticle = ArticleActionManager.canExecute('edit-article') // true
-const canDeleteArticle = ArticleActionManager.canExecute('delete-article') // true
-const canViewArticle = ArticleActionManager.canExecute('view-article') // true
+const canEditArticle = await ArticleActionManager.canExecute('edit-article') // true
+const canDeleteArticle = await ArticleActionManager.canExecute('delete-article') // true
+const canViewArticle = await ArticleActionManager.canExecute('view-article') // true
 
 if (canViewArticle) {
   ArticleActionManager.execute('view-article', { id: '456' })
